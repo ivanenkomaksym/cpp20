@@ -1,4 +1,4 @@
-#include <type_traits>
+#include <concepts>
 
 template <class T>
 concept SignedIntegral = std::is_integral_v<T> &&
@@ -12,4 +12,6 @@ public:
 private:
     template <SignedIntegral T> // no SFINAE here!
     auto signedIntsOnly(T val) -> void;
+    
+    auto floatsOnly(std::floating_point auto fp) -> void;
 };
